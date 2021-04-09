@@ -16,7 +16,7 @@ Método |Razão para deadlock|Execução|
 
 ## 2. Jantar dos filósofos &rarr; `DiningPhilosophers.java`
 
-Execute `java DininngPhilosophers n` onde `n > 2` é o número de "filósofos" / threads.
+Execute `java DiningPhilosophers n` onde `n > 2` é o número de "filósofos" / threads.
 
 Pode descomentar a linha com a chamada a `pause(1000)` para reproduzir mais facilmente a situação de deadlock.
 
@@ -24,7 +24,7 @@ Pode descomentar a linha com a chamada a `pause(1000)` para reproduzir mais faci
 
 `n` &rarr; valor inicial de contagem decrescente (`3` por omissão)
 
-O programa de teste lança `n` threads que chamam `await()` e outras três que chamam `await()`. 
+O programa de teste lança `n` threads que chamam `await()` e outras `n` que chamam `countDown()`. 
 
 Classe |Descrição|Teste|
 -------|---------|--------|

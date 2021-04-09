@@ -41,6 +41,7 @@ class CountDownLatch_Bug2 extends CountDownLatch {
     super(N); 
   }
   /* synchronized */ void countDown() {
+    
     if (value > 0 && --value == 0) 
       synchronized(this) { notifyAll(); }
     D.print("%d", value);
@@ -67,6 +68,7 @@ class CountDownLatch_Bug4 extends CountDownLatch {
       boolean b; 
       D.print("wait %d", value);
       synchronized (this) { b = (value > 0); }
+      Thread.yield();
       synchronized (this) { if (b) wait(); else break;} 
     }
     D.print("done");
