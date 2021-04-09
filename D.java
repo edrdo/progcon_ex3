@@ -22,7 +22,11 @@ public class D {
   public static void disable() {
     DEBUG = true;
   }
+  public static void enableDeadlockDetection() {
+    new DeadlockDetector().start();
+  }
   private static boolean DEBUG = System.getProperty("debug") != null;
   private static final Object LOCK = new Object();
   private D() { }
+  
 }

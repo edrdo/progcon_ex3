@@ -4,6 +4,7 @@ public class SimpleDeadlocks {
   public static void main(String[] args) {
     int example = args.length == 0 ? 1 : Integer.parseInt(args[0]);
     D.enable();
+    D.enableDeadlockDetection();
     switch (example) {
       case 1: deadlock1(); break;
       case 2: deadlock2(); break;

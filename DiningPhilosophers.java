@@ -12,6 +12,7 @@ public class DiningPhilosophers {
     int numberOfPhilosophers = args.length > 0 ?
        Integer.parseInt(args[0]) : 3;
     D.enable();
+    D.enableDeadlockDetection();
     Philosopher[] philosophers = create(numberOfPhilosophers);
     D.print("starting philosophers");
     for(Philosopher p : philosophers) {

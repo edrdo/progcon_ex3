@@ -6,6 +6,9 @@ public class TestCountDownLatch {
     int n = args.length >= 2 ? 
       Integer.parseInt(args[1]) : 3;
 
+    D.enable();
+    D.enableDeadlockDetection();
+
     // Create the count down latch
     CountDownLatch cdl;
     switch (impl) {
@@ -17,7 +20,6 @@ public class TestCountDownLatch {
               cdl = new CountDownLatch(n); break;
     }
 
-    D.enable();
     D.print("class = %s, n = %d", cdl.getClass().getName(), n);
 
     // Spawn n threads that will wait on the latch
