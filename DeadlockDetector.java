@@ -24,15 +24,16 @@ public class DeadlockDetector extends Thread {
     ignore.remove("main");
     ignore.add("DestroyJavaVM");
     
-    // Loop, exiting the program if a deadlock is detected.
-    while (true) {
+    // Loop until a deadlock is detected
+    boolean deadlock = false;
+    while (! deadlock) {
       try {
         Thread.sleep(1000);
       }
       catch(InterruptedException e) {
         throw new RuntimeException("Unexpected interrupt");
       }
-      boolean deadlock = true;
+      deadlock = true;
       ArrayList<ThreadInfo> stucked = new ArrayList<>();
       for (ThreadInfo ti : mxbean.dumpAllThreads(false, false)) {
         if (ignore.contains(ti.getThreadName())) {
@@ -47,7 +48,6 @@ public class DeadlockDetector extends Thread {
             break;
           default: 
             deadlock = false;
-            break;
         }
       }
       if (deadlock) {
@@ -63,9 +63,7 @@ public class DeadlockDetector extends Thread {
             sb.append(st[i].toString());
             D.print(sb.toString());
           }
-         
         }
-        System.exit(1);
       }
     }
   }
